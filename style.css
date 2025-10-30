@@ -1,0 +1,298 @@
+/* === 1. THEME VARIABLES (COLORS) === */
+:root {
+    /* Light Mode (Default) */
+    --color-bg: #f4f4f7;
+    --color-text: #333;
+    --color-heading: #111;
+    --color-subtle-text: #555;
+    --color-card-bg: #ffffff;
+    --color-card-shadow: rgba(0, 0, 0, 0.05);
+    --color-border: #e0e0e0;
+    --color-link: #007aff;
+    --color-link-hover: #0056b3;
+    --color-button-bg: #007aff;
+    --color-button-text: #ffffff;
+    --color-button-hover: #0056b3;
+    --color-icon-bg: #f9f9f9;
+    --color-icon-bg-hover: #eee;
+    --color-icon-fill: #444;
+}
+
+body.dark-mode {
+    /* Dark Mode */
+    --color-bg: #121212;
+    --color-text: #c9c9c9;
+    --color-heading: #ffffff;
+    --color-subtle-text: #a0a0a0;
+    --color-card-bg: #1e1e1e;
+    --color-card-shadow: rgba(0, 0, 0, 0.2);
+    --color-border: #333;
+    --color-link: #0a84ff;
+    --color-link-hover: #339aff;
+    --color-button-bg: #0a84ff;
+    --color-button-text: #ffffff;
+    --color-button-hover: #339aff;
+    --color-icon-bg: #2c2c2e;
+    --color-icon-bg-hover: #3a3a3c;
+    --color-icon-fill: #c9c9c9;
+}
+
+
+/* === 2. DARK MODE TOGGLE SWITCH === */
+.theme-switch-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px; /* Increased width to fit icons */
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px; /* Padding for icons */
+}
+
+.slider .icon {
+    font-size: 18px; /* Emoji size */
+    transition: opacity 0.4s ease;
+    user-select: none;
+}
+
+.slider .sun-icon {
+    opacity: 1;
+}
+
+.slider .moon-icon {
+    opacity: 0;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+input:checked + .slider {
+    background-color: #0a84ff;
+}
+
+input:checked + .slider .sun-icon {
+    opacity: 0;
+}
+input:checked + .slider .moon-icon {
+    opacity: 1;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+/* === 3. GLOBAL & FONT SETUP === */
+body {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--color-heading);
+    transition: color 0.3s ease;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 10px 0 5px 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-top: 0;
+    transition: border-color 0.3s ease;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+}
+
+/* === 4. LAYOUT === */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-top: 60px; /* Add padding to avoid toggle */
+}
+
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px var(--color-card-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* === 5. HEADER / PROFILE === */
+.profile-header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--color-card-bg); /* Use card bg for "pop-out" effect */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--color-subtle-text);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.location {
+    font-size: 1rem;
+    color: var(--color-subtle-text);
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+/* === 6. BUTTONS === */
+.resume-button,
+.contact-button {
+    display: inline-block;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.resume-button:hover,
+.contact-button:hover {
+    background-color: var(--color-button-hover);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* === 7. BIO SECTION === */
+.bio p {
+    margin-bottom: 15px;
+}
+
+/* === 8. SOCIAL LINKS === */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 20px;
+}
+
+.social-grid a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-icon-bg);
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.social-grid a:hover {
+    background-color: var(--color-icon-bg-hover);
+    transform: translateY(-3px);
+}
+
+.social-grid svg { /* Changed back to 'svg' */
+    width: 30px;
+    height: 30px;
+    fill: var(--color-icon-fill); /* Changed back to 'fill' */
+    transition: fill 0.3s ease;
+}
+
+/* === 9. CONTACT / FOOTER === */
+.contact {
+    text-align: center;
+}
+
+/* === 10. RESPONSIVE (Mobile) === */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding-top: 80px; /* More space for toggle on mobile */
+    }
+    
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .theme-switch-wrapper {
+        top: 15px;
+        right: 15px;
+    }
+}
+
