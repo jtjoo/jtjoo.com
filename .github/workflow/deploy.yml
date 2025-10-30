@@ -1,0 +1,41 @@
+# This is a GitHub Action to deploy your static website
+
+name: Deploy Website
+
+# This action runs on every push to the 'main' branch
+on:
+  push:
+    branches:
+      - master # Change this if your main branch is 'master'
+
+jobs:
+  deploy:
+    # We'll run this on the latest Ubuntu runner
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Get the code from your repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Use rsync to securely copy files to your server
+      - name: Deploy to server
+        uses: easingthemes/rsync-deploy@v5
+        env:
+          # Use the secrets we created in GitHub
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          
+          # The source directory on the runner (all files)
+          SOURCE: "./" 
+          
+          # The target directory on your server
+          TARGET: ${{ secrets.TARGET_DIR }}
+          
+          # rsync arguments
+          # -a: archive mode (preserves permissions, etc.)
+          # -v: verbose (shows files being copied)
+          # -z: compress file data during transfer
+          # --delete: deletes files on the server that are not in your push
+          ARGS: "-avz --delete"
