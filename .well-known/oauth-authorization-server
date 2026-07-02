@@ -6,5 +6,16 @@
   "grant_types_supported": [],
   "response_types_supported": [],
   "scopes_supported": [],
-  "code_challenge_methods_supported": []
+  "code_challenge_methods_supported": [],
+  "agent_auth": {
+    "skill": "https://jtjoo.com/auth.md",
+    "identity_endpoint": "https://jtjoo.com/",
+    "claim_endpoint": "https://jtjoo.com/",
+    "events_endpoint": "https://jtjoo.com/",
+    "identity_types_supported": [],
+    "identity_assertion": {
+      "assertion_types_supported": []
+    },
+    "events_supported": []
+  }
 }
