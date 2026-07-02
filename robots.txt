@@ -1,0 +1,55 @@
+# robots.txt for jtjoo.com
+# https://www.rfc-editor.org/rfc/rfc9309
+
+# Allow all general crawlers
+User-agent: *
+Allow: /
+Disallow: /test.php
+
+# --- AI Crawler Rules ---
+
+# GPTBot - AI training crawler (disallow training)
+User-agent: GPTBot
+Disallow: /
+
+# OAI-SearchBot - OpenAI search product crawler (allow indexing)
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT-User - conversational AI crawler (disallow)
+User-agent: ChatGPT-User
+Disallow: /
+
+# Claude-Web - Anthropic web crawler (disallow training)
+User-agent: Claude-Web
+Disallow: /
+
+# Google-Extended - Google AI training crawler (disallow training)
+User-agent: Google-Extended
+Disallow: /
+
+# CCBot - Common Crawl / AI training (disallow)
+User-agent: CCBot
+Disallow: /
+
+# PerplexityBot - Perplexity AI search (allow)
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic-AI - Anthropic training crawler (disallow)
+User-agent: Anthropic-AI
+Disallow: /
+
+# Meta / Facebook AI crawler
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# --- Content Signals ---
+# https://contentsignals.org/
+# ai-train: Allow AI training on content? no
+# search: Allow search engines to index? yes
+# ai-input: Allow use as AI chat input? no
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
+# --- Sitemap ---
+Sitemap: https://jtjoo.com/sitemap.xml

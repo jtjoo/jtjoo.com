@@ -1,0 +1,14 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://jtjoo.com/",
+      "relations": [
+        {
+          "href": "https://jintaejoo.notion.site/Jintae-Joo-17b8ec28383d807b95c3dcc730f744e0",
+          "rel": "service-doc",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

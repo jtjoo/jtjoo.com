@@ -1,0 +1,10 @@
+{
+  "issuer": "https://jtjoo.com",
+  "authorization_endpoint": "https://jtjoo.com/",
+  "token_endpoint": "https://jtjoo.com/",
+  "jwks_uri": "https://jtjoo.com/",
+  "grant_types_supported": [],
+  "response_types_supported": [],
+  "scopes_supported": [],
+  "code_challenge_methods_supported": []
+}
