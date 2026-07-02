@@ -14,7 +14,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons Script Removed -->
+    <!-- Agent Discovery Links (RFC 8288) -->
+    <link rel="api-catalog" href="/.well-known/api-catalog">
+    <link rel="oauth-auth-server" href="/.well-known/oauth-authorization-server">
+    <link rel="oauth-protected-resource" href="/.well-known/oauth-protected-resource">
+    <link rel="auth-md" href="/auth.md">
+    <link rel="mcp-server-card" href="/.well-known/mcp/server-card.json">
+    <link rel="agent-skills" href="/.well-known/agent-skills/index.json">
+    <link rel="alternate" type="text/markdown" title="Jintae Joo (Markdown)" href="/index.md">
 </head>
 <body>
 
@@ -137,7 +144,67 @@
         });
     </script>
 
-    <!-- Lucide Icon initialization script removed -->
+    <!-- === WebMCP: Expose site tools to AI agents === -->
+    <script>
+        if (navigator.modelContext && navigator.modelContext.provideContext) {
+            navigator.modelContext.provideContext({
+                tools: [{
+                    name: 'get_profile',
+                    description: 'Get Jintae Joo profile information',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {}
+                    },
+                    execute: async () => ({
+                        name: 'Jintae Joo',
+                        title: 'Musician \u2022 Creative Director \u2022 Web Developer \u2022 Designer',
+                        location: 'Suwon Gyeonggi-do, South Korea',
+                        resume: 'https://jintaejoo.notion.site/Jintae-Joo-17b8ec28383d807b95c3dcc730f744e0'
+                    })
+                }, {
+                    name: 'get_bio',
+                    description: 'Get Jintae Joo biography and career history',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {}
+                    },
+                    execute: async () => ({
+                        career: [
+                            { period: '2005-present', role: 'Web Programmer & Server Administrator', company: 'Seotaiji Company' },
+                            { period: '2008-present', role: 'Multimedia Producer & Composer', company: 'Seotaiji Company' },
+                            { period: '2011-2015', role: 'Creative Director', company: 'Spotlight Ent' },
+                            { period: '2021-present', role: 'Solo Artist', company: 'themilliways' }
+                        ],
+                        summary: 'Jintae began his career at Seotaiji Company in 2005, transitioning from web programming to multimedia production and music composition. He served as Creative Director at Spotlight Ent before debuting as solo artist themilliways in 2021.'
+                    })
+                }, {
+                    name: 'get_social_links',
+                    description: 'Get Jintae Joo social media and professional links',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {}
+                    },
+                    execute: async () => ({
+                        linkedin: 'https://www.linkedin.com/in/jintaejoo',
+                        github: 'https://github.com/jtjoo',
+                        youtube: 'https://www.youtube.com/@themilliways',
+                        instagram: 'https://www.instagram.com/themilliways_official/'
+                    })
+                }, {
+                    name: 'get_contact',
+                    description: 'Get Jintae Joo contact information',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {}
+                    },
+                    execute: async () => ({
+                        email: 'clutch-silo-swan@duck.com',
+                        linkedin: 'https://www.linkedin.com/in/jintaejoo'
+                    })
+                }]
+            });
+        }
+    </script>
 
 </body>
 </html>

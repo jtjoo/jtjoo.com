@@ -1,4 +1,0 @@
-# Agent Discovery Link Headers (RFC 8288)
-<IfModule mod_headers.c>
-    Header set Link "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/oauth-authorization-server>; rel=\"oauth-auth-server\", </.well-known/oauth-protected-resource>; rel=\"oauth-protected-resource\", </auth.md>; rel=\"auth-md\", </.well-known/mcp/server-card.json>; rel=\"mcp-server-card\", </.well-known/agent-skills/index.json>; rel=\"agent-skills\""
-</IfModule>
